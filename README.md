@@ -11,9 +11,9 @@ This is a sample implementation of the social network using STL containers
  * Eg.:
  *      searchUserByName("Jochen");
  *      searchUserByAge(36);
- *      searchUserByHobbies({"Jogging", "Football", "Tennis"}); //Returns alls users which have the hobbies jogging, footbal AND tennis.
- * Additionally we want to receive all the friends a particular user has. But we only want to receive the set of ID's of those users (friends).
-      ... getFriendsOfUser(...)
+ *      searchUserByHobbies({"Jogging", "Football", "Tennis"}); //Returns alls users which have the hobbies jogging, football AND tennis.
+ * Additionally we want to receive all the friends a particular user has. But we only want to receive the set of ID's of  those users (friends).
+ *       ... getFriendsOfUser(...)
  *
  * Neither the names of the users have to be unique (e.g. we can have multiple Klaus in the network) nor any other attribute.
  * Only the id of every user has to be unique in the whole network.
@@ -25,8 +25,7 @@ This is a sample implementation of the social network using STL containers
  * Also write some simple unit tests to show how you would test the functionality of the Network.
  * Don't use any testing framework. Simple if-statements are sufficient for this exercise.
  *
- * Hint: Think about performance versus memory tradeoffs in your design, so you can give good 
- *       reasons for your decision. 
+ * Hint: Think about performance versus memory tradeoffs in your design, so you can give good reasons for your decision. 
  */
 
 class User
