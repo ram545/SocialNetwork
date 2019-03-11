@@ -1,6 +1,7 @@
 #include<iostream>
-#include<map>
+#include<unordered_map>
 #include<iterator>
+#include<vector>
 #include<cstring>
 using namespace std;
 
@@ -13,15 +14,17 @@ class User
 		int height;
 		int id;
 		vector<string> hobbies;
-		static recordCounter=0;
 	public:
-		User(string name,int age,bool gender,int height,vector<string> hobbies);
+		static int idCounter;
+		User(string name,int age=0,bool gender=false,int height=0,vector<string> hobbies);
+		User(string name);
 		~User();
-		bool addAge();
-		bool addGender();
-		bool addHeight();
-		bool generateId();
-		bool addHobbies();
+		User(User&& obj);
+		void addAge(int age);
+		void addGender(bool gender);
+		void addHeight(int height);
+		int generateId();
+		void addHobbies(vector<string> hobbies);
 		void display();
 };
  
@@ -29,12 +32,12 @@ class SocialNetwork
 {
 public:
 	void addUser(User obj);
-	void deleteUser(/*fill in*/);
+	void deleteUser(int id);
 	//*fill in*/ searchUserByName(/*fill in*/);
 	//*fill in*/ searchUserByAge(/*fill in*/);
 	//*fill in*/ searchUserByHobbies(/*fill in*/);
 	//*fill in*/ getFriendsOfUser(/*fill in*/);
 	
 private:
-	std::unordered_map<int, person> &dict;
+	unordered_map<int, User> &dict;
 };
