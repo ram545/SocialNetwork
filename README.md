@@ -43,7 +43,7 @@ setofFriends can have multiple
 class SocialNetwork
 {
 public:
-	void addUser( std::unordered_map<int, person> &dict);
+	void addUser(User obj);
 	void deleteUser(/*fill in*/);
 	/*fill in*/ searchUserByName(/*fill in*/);
 	/*fill in*/ searchUserByAge(/*fill in*/);
@@ -53,5 +53,3 @@ public:
 private:
 	/*fill in*/
 };
-
- create a unordered_map that has an integer as a key and a user object as the value

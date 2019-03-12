@@ -1,8 +1,10 @@
 #include<iostream>
 #include<unordered_map>
+#include<map>
 #include<iterator>
 #include<vector>
 #include<cstring>
+#include<utility>
 using namespace std;
 
 class User
@@ -10,28 +12,33 @@ class User
 	private:
 		string name;
 		int age;
-		bool gender;
+		string gender;
 		int height;
 		int id;
 		vector<string> hobbies;
-	public:
 		static int idCounter;
-		User(string name,int age=0,bool gender=false,int height=0,vector<string> hobbies);
+		static multimap<int,int> friends;
+	public:
+		User(string name,int age,string gender,int height,vector<string> hobbies);
 		User(string name);
 		~User();
-		User(User&& obj);
+		User(const User& obj);
 		void addAge(int age);
-		void addGender(bool gender);
+		void addGender(string gender);
 		void addHeight(int height);
 		int generateId();
+		int getId();
 		void addHobbies(vector<string> hobbies);
 		void display();
+		void addFriend(int id);
+		void getFriend();
+		void deleteFriend(int id);
 };
  
 class SocialNetwork
 {
 public:
-	void addUser(User obj);
+	int addUser();
 	void deleteUser(int id);
 	//*fill in*/ searchUserByName(/*fill in*/);
 	//*fill in*/ searchUserByAge(/*fill in*/);
@@ -39,5 +46,5 @@ public:
 	//*fill in*/ getFriendsOfUser(/*fill in*/);
 	
 private:
-	unordered_map<int, User> &dict;
+	unordered_map<int, User> dict;
 };
