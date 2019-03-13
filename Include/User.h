@@ -33,7 +33,7 @@ class User
 		void addHobbies(vector<string> hobbies);
 		void display();
 		void addFriend(int id);
-		void getFriend();
+		vector<int> getFriend();
 		void deleteFriend(int id);
 };
  
@@ -41,7 +41,7 @@ class SocialNetwork
 {
 public:
 	int addUser();
-	void deleteUser(int id);
+	void deleteUser();
 	void displayData();
 	void addFriends();
 	void getFriendsOfUser();
@@ -52,5 +52,6 @@ public:
 private:
 	unordered_multimap<int,int> agehash;
 	unordered_multimap<string,int> namehash;
+	unordered_multimap<string,int> hobbhash;
 	unordered_map<int, User> dict;
 };

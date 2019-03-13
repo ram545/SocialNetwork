@@ -13,7 +13,7 @@ int main(){
 					 cout << "Your account has been created and Id is " << id << endl;
 					 dataId.push_back(id);
 					 break;
-			case 2 : Users.displayData();
+			case 2 : Users.deleteUser();
 					 break;
 			case 3 : if(dataId.size()<=1)
 						cout << "Add Users to continue" << endl;
