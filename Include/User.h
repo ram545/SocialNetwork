@@ -28,6 +28,8 @@ class User
 		void addHeight(int height);
 		int generateId();
 		int getId();
+		string getName();
+		int getAge();
 		void addHobbies(vector<string> hobbies);
 		void display();
 		void addFriend(int id);
@@ -40,11 +42,15 @@ class SocialNetwork
 public:
 	int addUser();
 	void deleteUser(int id);
-	//*fill in*/ searchUserByName(/*fill in*/);
-	//*fill in*/ searchUserByAge(/*fill in*/);
-	//*fill in*/ searchUserByHobbies(/*fill in*/);
-	//*fill in*/ getFriendsOfUser(/*fill in*/);
+	void displayData();
+	void addFriends();
+	void getFriendsOfUser();
+	void searchUserByName();
+	void searchUserByAge();
+	void searchUserByHobbies();
 	
 private:
+	unordered_multimap<int,int> agehash;
+	unordered_multimap<string,int> namehash;
 	unordered_map<int, User> dict;
 };

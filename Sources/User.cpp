@@ -32,14 +32,14 @@ User::~User(){
 }
 
 User::User(const User& obj){
-	if(this!=&obj){
+	//if(this!=&obj){
 		this->name=obj.name;
 		this->age=obj.age;
 		this->gender=obj.gender;
 		this->height=obj.height;
 		this->id=obj.id;
 		this->hobbies=move(hobbies);
-	}
+	//}
 }
 
 /*
@@ -54,6 +54,14 @@ User& operator=(User&& obj){
 
 int User::getId(){
 	return id;
+}
+
+string User::getName(){
+	return name;
+}
+
+int User::getAge(){
+	return age;
 }
 
 void User::addAge(int age){
@@ -94,6 +102,7 @@ void User::display(){
 			cout << this->hobbies[i] << " ";
 		cout << endl;
 	}
+	getFriend();
 }
 
 
@@ -134,10 +143,91 @@ void User::deleteFriend(int id){
 }
 
 int SocialNetwork::addUser(){
-	vector<string> hobbies={"skippin","trippin"};
-	User obj("Pokran",12,"male",140,hobbies);
+	string name,gender,hobby;
+	int age,height,hobbNo;
+	vector<string> hobbies;
+	cout << "Enter your name: ";
+	getline(cin,name);
+	cout << "Enter your age: ";
+	cin >> age;
+	cin.ignore(250,'\n');
+	cout << "Enter your gender(male/female): ";
+	getline(cin,gender);
+	cout << "Enter your height: ";
+	cin >> height;
+	cin.ignore(250,'\n');
+	cout << "Enter the Number of Hobbies: ";
+	cin >> hobbNo;
+	cin.ignore(250,'\n');
+	while(hobbNo--){
+		getline(cin,hobby);
+		hobbies.push_back(hobby);
+	}
+	User obj(name,age,gender,height,hobbies);
 	obj.display();
 	dict.insert(make_pair(obj.getId(),obj));
+	namehash.insert(make_pair(obj.getName(),obj.getId()));
+	agehash.insert(make_pair(obj.getAge(),obj.getId()));
 	return obj.getId();
 }
 
+void SocialNetwork::displayData(){
+	unordered_map<int,User>:: iterator it;
+	for(it=dict.begin();it!=dict.end();++it){
+		it->second.display();
+	}
+}
+
+void SocialNetwork::addFriends(){
+	int n,a,b,i;
+	unordered_map<int,User>::iterator it;
+	cout << "Enter the number of relations : ";
+	cin >> n;
+	cout << "Enter the relation: " << endl;
+	for(i=0;i<n;i++){
+		cin >> a >> b;
+		it=dict.find(a);
+		it->second.addFriend(b);
+	}
+}
+
+void SocialNetwork::getFriendsOfUser(){
+	int n,i;
+	cout << "Enter the Id: ";
+	cin >> n;
+	unordered_map<int,User>::iterator it;
+	it=dict.find(n);
+	it->second.getFriend();
+}
+
+void SocialNetwork::searchUserByName(){
+	string name;
+	cout << "Enter the name: ";
+	cin >> name;
+	typedef unordered_multimap<string,int>::iterator iterator;
+	std::pair<iterator, iterator> iterpair = namehash.equal_range(name);
+	iterator it=iterpair.first;
+	unordered_map<int,User>::iterator it1;
+	for(;it!=iterpair.second;++it){
+		it1=dict.find(it->second);
+		it1->second.display();
+	}
+}
+
+void SocialNetwork::searchUserByAge(){
+	int age;
+	cout << "Enter the age: ";
+	cin >> age;
+	typedef unordered_multimap<int,int>::iterator iterator;
+	std::pair<iterator, iterator> iterpair = agehash.equal_range(age);
+	iterator it=iterpair.first;
+	unordered_map<int,User>::iterator it1;
+	for(;it!=iterpair.second;++it){
+		it1=dict.find(it->second);
+		it1->second.display();
+	}
+}
+
+
+void SocialNetwork::searchUserByHobbies(){
+}
